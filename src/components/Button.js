@@ -1,12 +1,15 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import {colors} from "../resources/Colors";
+import { fonts } from '../resources/Fonts';
 
 export default class Button extends React.PureComponent {
     static defaultProps = {
         width: 100,
         label: 'Button',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        textColor: colors.pink,
+        hasUnderline: false
     };
 
 
@@ -22,7 +25,13 @@ export default class Button extends React.PureComponent {
                     }, 
                     this.props.style ]}>
                 
-                <Text style={ styles.buttonText }>
+                <Text style={[ 
+                    styles.buttonText, 
+                    { 
+                        color: this.props.textColor,
+                        textDecorationLine: this.props.hasUnderline ? 'underline' : 'none'
+                    } 
+                ]}>
                     { this.props.label }
                 </Text>
 
@@ -35,15 +44,13 @@ const styles = StyleSheet.create({
     buttonView: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: 34,
-        borderWidth: 2,
-        borderColor: colors.black,
+        height: 52,
+        borderRadius: 33,
         alignSelf: 'center'
     },
-    buttonText: {
-        color: colors.black,
-        fontSize: 16,
+    buttonText: {        
+        fontSize: 12,
         backgroundColor: 'transparent',
-        fontWeight: 'bold'
+        fontFamily: fonts.quicksandRegular,
     }
 });
