@@ -18,17 +18,22 @@ import { colors } from '../resources/Colors';
 
 
 const NavigationStack = isLogged => createStackNavigator({
+        
+    KidsGoalsScreen: {
+        screen: KidsGoalsScreen
+    },
+    KidsGoalsScreen: {
+        screen: KidsGoalsScreen
+    },
+    NewAccountScreen: {
+        screen: NewAccountScreen
+    },
     ModalTestScreen:{
         screen: ModalTestScreen
     },
-    KidsGoalsScreen: {
-        screen: KidsGoalsScreen
-    },
     ContaCorrenteScreen: {
         screen: ContaCorrenteScreen
-    },    
-    KidsGoalsScreen: {
-        screen: KidsGoalsScreen
+    },
     TabNavigation: {
         screen: TabNavigation
     },
@@ -40,9 +45,6 @@ const NavigationStack = isLogged => createStackNavigator({
     },
     HelloKidScreen: {
         screen: HelloKidScreen
-    },
-    NewAccountScreen: {
-        screen: NewAccountScreen
     }
 
 },

@@ -10,7 +10,7 @@ export default class CardInput extends Component {
     static defaultProps = {
         width: 100,
         maxLength: 255,
-        autoCapitalize: false,
+        autoCapitalize: false
     }
 
     render() {
