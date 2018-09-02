@@ -19,6 +19,9 @@ import { colors } from '../resources/Colors';
 const wallet = '../../assets/imgs/conta_corrente';
 
 const NavigationStack = isLogged => createStackNavigator({
+    TabKidNavigation: {
+        screen: TabKidNavigation
+    },
     LoginScreen: {
         screen: LoginScreen
     },   
@@ -39,14 +42,60 @@ const NavigationStack = isLogged => createStackNavigator({
     },
     HelloKidScreen: {
         screen: HelloKidScreen
-    }
+    },
 
 },
 {
     screenProps: isLogged,
     headerMode: 'none'
     // initialRouteName: isLogged ? 'TabNavigation' : 'LoginScreen',
-    // initialRouteName: 'Picture',
+});
+
+const TabKidNavigation = createBottomTabNavigator({
+    KidsGoalsScreen: {
+        screen: KidsGoalsScreen,
+        navigationOptions: {
+            tabBarLabel: 'Minhas tarefas',
+        }
+    }
+},
+{
+    navigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ focused }) => {
+            const { routeName } = navigation.state;
+            let iconName;
+            if (routeName === 'KidsGoalsScreen') {
+                return <Image
+                    style={{ width: 35, height: 35}} 
+                    source={ focused ? 
+                        require('../../assets/img/minhas_doacoes_color.png') : 
+                        require('../../assets/img/minhas_doacoes.png') } />;
+            } 
+            // else if (routeName === 'ContaCorrente') {
+            //     return <Image
+            //         style={{ width: 35, height: 35}} 
+            //         source={ focused ? 
+            //             require('../../assets/img/conta_corrente_color.png') :
+            //             require('../../assets/img/conta_corrente.png') } />;
+            // } else if (routeName === 'Metas') {
+            //     return <Image
+            //         style={{ width: 35, height: 35}} 
+            //         source={ focused ? 
+            //             require('../../assets/img/metas_color.png') : 
+            //             require('../../assets/img/metas.png')} />;
+            // } else if (routeName === 'Chatbot') {
+            //     return <Image
+            //         style={{ width: 35, height: 35}} 
+            //         source={ focused ? 
+            //             require('../../assets/img/chatbot_color.png') :
+            //             require('../../assets/img/chatbot.png') } />;
+            // }
+        }
+    }),
+    tabBarOptions: {
+        activeTintColor: colors.cardText,
+        inactiveTintColor: colors.cardText
+    },
 });
 
 const TabNavigation = createBottomTabNavigator({
@@ -67,7 +116,7 @@ const TabNavigation = createBottomTabNavigator({
 },
 {
     navigationOptions: ({ navigation }) => ({
-        tabBarIcon: ({ focused, tintColor }) => {
+        tabBarIcon: ({ focused }) => {
             const { routeName } = navigation.state;
             let iconName;
             if (routeName === 'MeuPerfil') {
