@@ -17,7 +17,6 @@ export default class KidsGoalsContainer extends Component {
   }
 
   render() {
-    const group3 = '../../assets/img/group_3.png';
     const forKids = '../../assets/img/forKids.png';
     const list = '../../assets/img/list.png';
 
@@ -39,7 +38,7 @@ export default class KidsGoalsContainer extends Component {
         </Text>
 
         <Button
-            style={ styles.yesNoButton } 
+            style={ styles.enviarButton } 
             label={'Enviar tarefa!'}
             backgroundColor={colors.blue}
             width={280}
@@ -72,6 +71,12 @@ const styles = StyleSheet.create({
         left: 10
     },
 
+    enviarButton: {
+        position: 'absolute',
+        top: 550
+        
+
+    },
     topImage: { 
         width: 412, 
         height: 200, 
