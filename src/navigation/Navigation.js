@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { Image } from 'react-native';
 import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 import {connect} from "react-redux";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 
 import LoginScreen from "../screens/LoginScreen";
 import HelloKidScreen from '../screens/HelloKidScreen';
@@ -16,6 +16,7 @@ import ChatbotScreen from '../screens/ChatbotScreen';
 import * as LoginActions from '../actions/LoginActions'
 import { colors } from '../resources/Colors';
 
+const wallet = '../../assets/imgs/conta_corrente';
 
 const NavigationStack = isLogged => createStackNavigator({
     TabNavigation: {
@@ -63,22 +64,36 @@ const TabNavigation = createBottomTabNavigator({
             const { routeName } = navigation.state;
             let iconName;
             if (routeName === 'MeuPerfil') {
-                iconName = `ios-contact`;
+                return <Image
+                    style={{ width: 35, height: 35}} 
+                    source={ focused ? 
+                        require('../../assets/img/profile_color.png') : 
+                        require('../../assets/img/profile.png') } />;
             } else if (routeName === 'ContaCorrente') {
-                iconName = `ios-wallet`;
+                return <Image
+                    style={{ width: 35, height: 35}} 
+                    source={ focused ? 
+                        require('../../assets/img/conta_corrente_color.png') :
+                        require('../../assets/img/conta_corrente.png') } />;
             } else if (routeName === 'Metas') {
-                iconName = `ios-flag`;
+                return <Image
+                    style={{ width: 35, height: 35}} 
+                    source={ focused ? 
+                        require('../../assets/img/metas_color.png') : 
+                        require('../../assets/img/metas.png')} />;
             } else if (routeName === 'Chatbot') {
-                iconName = `ios-book`;
+                return <Image
+                    style={{ width: 35, height: 35}} 
+                    source={ focused ? 
+                        require('../../assets/img/chatbot_color.png') :
+                        require('../../assets/img/chatbot.png') } />;
             }
-
-            return <Ionicons name={iconName} size={25} color={tintColor} />;
         }
     }),
     initialRouteName: 'ContaCorrente',
     tabBarOptions: {
         activeTintColor: colors.cardText,
-        inactiveTintColor: colors.cardText,
+        inactiveTintColor: colors.cardText
     },
 });
 
