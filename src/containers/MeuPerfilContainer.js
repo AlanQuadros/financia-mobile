@@ -28,7 +28,7 @@ export default class MeuPerfilContainer extends Component {
 
         return (
             <ScrollView>
-                <View style={ styles.styles }>
+                <View style={ styles.container }>
                     <Image 
                         style={{ width: 412, height: 174, position: 'absolute' }}
                         source={ require(topo) }

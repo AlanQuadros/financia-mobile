@@ -18,12 +18,12 @@ import { colors } from '../resources/Colors';
 
 
 const NavigationStack = isLogged => createStackNavigator({
-    LoginScreen: {
-        screen: LoginScreen
-    },
     TabNavigation: {
         screen: TabNavigation
     },
+    LoginScreen: {
+        screen: LoginScreen
+    },    
     KidsGoalsScreen: {
         screen: KidsGoalsScreen
     },
@@ -58,9 +58,6 @@ const TabNavigation = createBottomTabNavigator({
     Chatbot: ChatbotScreen
 },
 {
-    initialRouteName: 'ContaCorrente'
-},
-{
     navigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ focused, tintColor }) => {
             const { routeName } = navigation.state;
@@ -78,6 +75,7 @@ const TabNavigation = createBottomTabNavigator({
             return <Ionicons name={iconName} size={25} color={tintColor} />;
         }
     }),
+    initialRouteName: 'Metas',
     tabBarOptions: {
         activeTintColor: colors.cardText,
         inactiveTintColor: colors.cardText,
