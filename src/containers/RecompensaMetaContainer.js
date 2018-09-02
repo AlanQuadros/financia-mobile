@@ -15,30 +15,28 @@ export default class RecompensaMetaContainer extends Component {
         return (
             <View 
                 style={ styles.container }>
-
-                <StatusBar backgroundColor={colors.blue} />
                 
                 <Image 
                     style={{ width: 412, height: 174, position: 'absolute', top: 0 }}
                     source={ require(topo) }
                 />    
-
-                <View style={ styles.buttonsView }>
-                    <Image 
-                        style={ styles.simbol }
-                        source={ require(simbol) }
-                    />
-                    <View class="row">
+                <Image 
+                    style={ styles.simbol }
+                    source={ require(simbol) }
+                />
+            
+                <View class="row">
                     <Text>Seu saldo é:</Text>
                     <Text>R$ 34</Text>
-                    </View>
-                    <View style={styles.modalContent}>
+                </View>
+                <View style={styles.modalContent}>
                     <Text>Sua meta é R$ 100</Text>
-                    </View>
-                    <View style={styles.modalContent}>
-                    <Image></Image>
-                    <Image></Image>
-                    </View>
+                </View>
+                <View style={styles.modalContent}>
+                        
+                </View>
+                </View> 
+                    
         );
     }
 }
