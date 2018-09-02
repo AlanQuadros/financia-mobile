@@ -18,12 +18,12 @@ import { colors } from '../resources/Colors';
 
 
 const NavigationStack = isLogged => createStackNavigator({
-    LoginScreen: {
-        screen: LoginScreen
-    },
     TabNavigation: {
         screen: TabNavigation
     },
+    LoginScreen: {
+        screen: LoginScreen
+    },    
     KidsGoalsScreen: {
         screen: KidsGoalsScreen
     },
@@ -56,6 +56,9 @@ const TabNavigation = createBottomTabNavigator({
     },
     Metas: MetasScreen,
     Chatbot: ChatbotScreen
+},
+{
+    // initialRouteName: 'ContaCorrente'
 },
 {
     navigationOptions: ({ navigation }) => ({
