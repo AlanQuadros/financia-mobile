@@ -13,15 +13,15 @@ import ContaCorrenteScreen from '../screens/ContaCorrenteScreen';
 import MetasScreen from '../screens/MetasScreen';
 import ChatbotScreen from '../screens/ChatbotScreen';
 import ModalTestScreen from '../screens/ModalTestScreen';
+import MetasKidScreen from '../screens/MetasKidScreen';
+
 import * as LoginActions from '../actions/LoginActions'
 import { colors } from '../resources/Colors';
 
 const wallet = '../../assets/imgs/conta_corrente';
 
 const NavigationStack = isLogged => createStackNavigator({
-    TabKidNavigation: {
-        screen: TabKidNavigation
-    },
+    
     LoginScreen: {
         screen: LoginScreen
     },   
@@ -43,7 +43,9 @@ const NavigationStack = isLogged => createStackNavigator({
     HelloKidScreen: {
         screen: HelloKidScreen
     },
-
+    TabKidNavigation: {
+        screen: TabKidNavigation
+    },
 },
 {
     screenProps: isLogged,
@@ -57,6 +59,9 @@ const TabKidNavigation = createBottomTabNavigator({
         navigationOptions: {
             tabBarLabel: 'Minhas tarefas',
         }
+    },
+    MetasKidScreen: {
+        screen: MetasKidScreen
     }
 },
 {
@@ -70,14 +75,14 @@ const TabKidNavigation = createBottomTabNavigator({
                     source={ focused ? 
                         require('../../assets/img/minhas_doacoes_color.png') : 
                         require('../../assets/img/minhas_doacoes.png') } />;
+            } else if (routeName === 'MetasKidScreen') {
+                return <Image
+                    style={{ width: 35, height: 35}} 
+                    source={ focused ? 
+                        require('../../assets/img/metas_color.png') :
+                        require('../../assets/img/metas.png') } />;
             } 
-            // else if (routeName === 'ContaCorrente') {
-            //     return <Image
-            //         style={{ width: 35, height: 35}} 
-            //         source={ focused ? 
-            //             require('../../assets/img/conta_corrente_color.png') :
-            //             require('../../assets/img/conta_corrente.png') } />;
-            // } else if (routeName === 'Metas') {
+            // else if (routeName === 'Metas') {
             //     return <Image
             //         style={{ width: 35, height: 35}} 
             //         source={ focused ? 
