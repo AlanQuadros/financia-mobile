@@ -29,30 +29,43 @@ const NavigationStack = isLogged => createStackNavigator({
     },    
     KidsGoalsScreen: {
         screen: KidsGoalsScreen
+    TabNavigation: {
+        screen: TabNavigation
     },
     LoginScreen: {
         screen: LoginScreen
+    },    
+    KidsGoalsScreen: {
+        screen: KidsGoalsScreen
     },
     HelloKidScreen: {
         screen: HelloKidScreen
     },
     NewAccountScreen: {
         screen: NewAccountScreen
-    },
-    TabNavigation: {
-        screen: TabNavigation
     }
 
 },
 {
     screenProps: isLogged,
+    headerMode: 'none'
     // initialRouteName: isLogged ? 'TabNavigation' : 'LoginScreen',
     // initialRouteName: 'Picture',
 });
 
 const TabNavigation = createBottomTabNavigator({
-    MeuPerfil: MeuPerfilScreen,
-    ContaCorrente: ContaCorrenteScreen,
+    MeuPerfil: {
+        screen: MeuPerfilScreen,
+        navigationOptions: {
+            tabBarLabel: 'Meu Perfil',
+        }
+    },
+    ContaCorrente: {
+        screen: ContaCorrenteScreen,
+        navigationOptions: {
+            tabBarLabel: 'Conta Corrente'
+        }
+    },
     Metas: MetasScreen,
     Chatbot: ChatbotScreen
 },
@@ -72,26 +85,14 @@ const TabNavigation = createBottomTabNavigator({
             }
 
             return <Ionicons name={iconName} size={25} color={tintColor} />;
-        },
+        }
     }),
+    initialRouteName: 'ContaCorrente',
     tabBarOptions: {
         activeTintColor: colors.cardText,
         inactiveTintColor: colors.cardText,
     },
 });
-
-// TabNavigation.navigationOptions = ({ navigation }) => {
-//     const { routes, index } = navigation.state;
-//     const navigationOptions = {};
-
-//     if (routes[index].routeName === 'MeuPerfil') {
-//         navigationOptions.title = 'RandomPics';
-//     } else if (routes[index].routeName === 'Settings') {
-//         navigationOptions.title = 'Settings';
-//     }
-
-//     return navigationOptions;
-// };
 
 
 class Navigation extends Component {

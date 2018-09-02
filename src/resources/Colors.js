@@ -7,7 +7,5 @@ export const colors = {
     softBlue: '#00b2f4',
     backgroundBase: '#f7f7f7',
     cardText: '#4a4a4a',
-    grey: '#737373',
-
-
+    grey: '#9b9b9b'
 };

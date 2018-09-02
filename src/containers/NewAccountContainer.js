@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import CardFinan from '../components/CardFinan';
 import { fonts } from '../resources/Fonts';
 import { colors } from '../resources/Colors';
@@ -25,6 +25,7 @@ export default class NewAccountContainer extends Component {
 
     handleSubmitName(){
         this.setState({ showCpf: true });
+        this.scrollView.scrollToEnd();
     }
 
     handleCpf(cpf){
@@ -49,48 +50,53 @@ export default class NewAccountContainer extends Component {
         const topo = '../../assets/img/topo_azul.png';
 
         return (
-            <View style={ styles.container }>
+            <ScrollView
+                style={{ backgroundColor: colors.backgroundBase }}
+                ref={ref => this.scrollView = ref}
+                keyboardShouldPersistTaps={'always'}>
+                <View style={ styles.container }>
 
-                <Image 
-                    style={{ width: 412, height: 174, position: 'absolute' }}
-                    source={ require(topo) }
-                />
-                
-                <Text style={ styles.topText }>
-                    Conta Sicredi
-                </Text>
+                    <Image 
+                        style={{ width: 412, height: 174, position: 'absolute' }}
+                        source={ require(topo) }
+                    />
+                    
+                    <Text style={ styles.topText }>
+                        Conta Sicredi
+                    </Text>
 
-                <CardFinan text={newUserText1} />
-                <CardFinan text={newUserText2} />
-                <CardUser text={'Legal!'} />
-                <CardFinan text={newUserText3} />
+                    <CardFinan text={newUserText1} />
+                    <CardFinan text={newUserText2} />
+                    <CardUser text={'Legal!'} />
+                    <CardFinan text={newUserText3} />
 
-                <CardInput 
-                    autoCapitalize
-                    value={this.state.name}
-                    maxLength={30}
-                    onChangeText={value => this.handleName(value)}
-                    onSubmitEditing={this.handleSubmitName.bind(this)}
-                    width={250}
-                />
-                {
-                    renderIf(this.state.showCpf)(
-                        <View>
-                            <CardFinan text={newUserText4} />
+                    <CardInput 
+                        autoCapitalize
+                        value={this.state.name}
+                        maxLength={30}
+                        onChangeText={value => this.handleName(value)}
+                        onSubmitEditing={this.handleSubmitName.bind(this)}
+                        width={250}
+                    />
+                    {
+                        renderIf(this.state.showCpf)(
+                            <View>
+                                <CardFinan text={newUserText4} />
 
-                            <CardInput 
-                                value={this.state.cpf}
-                                maxLength={11}
-                                keyboardType={'numeric'}
-                                onSubmitEditing={this.handleSubmitCpf.bind(this)}
-                                onChangeText={value => this.handleCpf(value)}
-                                width={120} 
-                            />
-                        </View>
-                    )
-                }                
+                                <CardInput 
+                                    value={this.state.cpf}
+                                    maxLength={11}
+                                    keyboardType={'numeric'}
+                                    onSubmitEditing={this.handleSubmitCpf.bind(this)}
+                                    onChangeText={value => this.handleCpf(value)}
+                                    width={120} 
+                                />
+                            </View>
+                        )
+                    }                
 
-            </View>
+                </View>
+            </ScrollView>
         );
     }
 }
