@@ -26,7 +26,7 @@ const getGoalsTwo = (state = false, action) => {
 const getGoalsThree = (state = false, action) => {
     switch(action.type) {
         case GET_GOALS_3:
-            return action.getGoalsThree;
+            return action.goalsThree;
         case GET_GOALS_3_ERROR:
             return action.errorMessage;
         default:

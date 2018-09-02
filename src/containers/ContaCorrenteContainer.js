@@ -2,15 +2,40 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, StatusBar, ScrollView } from 'react-native';
 import { colors } from '../resources/Colors';
 import { fonts } from '../resources/Fonts';
+import {connect} from "react-redux";
+import * as SpentsActions from '../actions/SpentsActions';
 import Card from '../components/Card';
 import Gastos from '../components/Gastos';
+import renderIf from 'render-if';
 
-export default class ContaCorrenteContainer extends Component {
+class ContaCorrenteContainer extends Component {
     
     constructor(props) {
         super(props);
         this.state = {
+            fixos: [],
+            sazonais: [],
+            credito: []
         };
+    }
+
+    componentDidMount() {
+        const { _buscarGastosFixos, _buscarGastosSazonais, _buscarGastosCredito } = this.props;
+
+        _buscarGastosFixos(1)
+            .then(resp => {
+                this.setState({ fixos: resp })
+            });
+
+        _buscarGastosSazonais(1)
+            .then(resp => {
+                this.setState({ sazonais: resp })
+            });
+
+        _buscarGastosCredito(1)
+            .then(resp => {
+                this.setState({ credito: resp })
+            });
     }
 
     render() {
@@ -35,46 +60,63 @@ export default class ContaCorrenteContainer extends Component {
                         />
                     </Card>
 
-                    <Card>
-                        <Text style={ styles.cardTitle }>
-                            Gastos Fixos
-                        </Text>
-                        <Gastos 
-                            gasto={'Aluguel'}
-                            valor={'1500,00'}
-                        />
-
-                        <Gastos 
-                            gasto={'Lux'}
-                            valor={'105,00'}
-                        />
-
-                        <Gastos 
-                            gasto={'Água'}
-                            valor={'85,00'}
-                        />
-
-                    </Card>
-
-                    <Card>
-                        <Text style={ styles.cardTitle }>
-                            Sazonais
-                        </Text>
-                        <Gastos 
-                            gasto={'IPVA'}
-                            valor={'250,00'}
-                        />
-                    </Card>
-
-                    <Card>
-                        <Text style={ styles.cardTitle }>
-                            Crédito
-                        </Text>
-                        <Gastos 
-                            gasto={'Amazon'}
-                            valor={'150,00'}
-                        />
-                    </Card>
+                    {
+                        renderIf(this.state.fixos.length)(
+                            <Card>
+                                <Text style={ styles.cardTitle }>
+                                    Gastos Fixos
+                                </Text>
+                                {
+                                    this.state.fixos.map(item => {
+                                        return (
+                                            <Gastos 
+                                                gasto={item.name}
+                                                valor={item.value}
+                                            />
+                                        );
+                                    })
+                                }
+                            </Card>
+                        )
+                    }
+                    {
+                        renderIf(this.state.sazonais.length)(
+                            <Card>
+                                <Text style={ styles.cardTitle }>
+                                    Sazonais
+                                </Text>
+                                {
+                                    this.state.sazonais.map(item => {
+                                        return (
+                                            <Gastos 
+                                                gasto={item.name}
+                                                valor={item.value}
+                                            />
+                                        );
+                                    })
+                                }
+                            </Card>
+                        )
+                    }
+                    {
+                        renderIf(this.state.credito.length)(
+                            <Card>
+                                <Text style={ styles.cardTitle }>
+                                    Crédito
+                                </Text>
+                                {
+                                    this.state.credito.map(item => {
+                                        return (
+                                            <Gastos 
+                                                gasto={item.name}
+                                                valor={item.value}
+                                            />
+                                        );
+                                    })
+                                }
+                            </Card>
+                        )
+                    }
                     
                 </View>
             </ScrollView>
@@ -102,3 +144,11 @@ const styles = StyleSheet.create({
         marginBottom: 16
     }
 })
+
+const mapeador = (state) => ({
+    getSpentsOne: state.GoalsReducer.getSpentsOne,
+    getSpentsTwo: state.GoalsReducer.getSpentsTwo,
+    getSpentsThree: state.GoalsReducer.getSpentsThree,
+});
+
+export default (ContaCorrenteContainer = connect(mapeador, SpentsActions)(ContaCorrenteContainer));

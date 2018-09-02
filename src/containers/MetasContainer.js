@@ -6,6 +6,7 @@ import Metas from '../components/Metas';
 import Card from '../components/Card';
 import {connect} from "react-redux";
 import * as GoalsActions from '../actions/GoalsActions';
+import renderIf from 'render-if';
 
 class MetasContainer extends Component {
     constructor(props) {
@@ -18,21 +19,21 @@ class MetasContainer extends Component {
     }
 
     componentDidMount() {
-        const { _buscarMetasPorPrazo } = this.props;
+        const { _buscarMetasCurtoPrazo, _buscarMetasMedioPrazo, _buscarMetasLongoPrazo } = this.props;
 
-        _buscarMetasPorPrazo(1, 1)
+        _buscarMetasCurtoPrazo(1)
             .then(resp => {
                 this.setState({ curtoPrazo: resp })
             })
 
-        _buscarMetasPorPrazo(2, 1)
+        _buscarMetasMedioPrazo(1)
             .then(resp => {
                 this.setState({ medioPrazo: resp })
             })
 
-        _buscarMetasPorPrazo(3, 1)
+        _buscarMetasLongoPrazo(1)
             .then(resp => {
-                this.setState({ lon: resp })
+                this.setState({ longoPrazo: resp })
             })
     }
 
@@ -48,43 +49,60 @@ class MetasContainer extends Component {
                     />
                     <Text style={ styles.topText }>Metas</Text>
 
-                    <Card>
-                        <Text style={ styles.cardTitle }>Curto prazo</Text>
+                    {
+                        renderIf(this.state.curtoPrazo.length)(
+                            <Card>
+                                <Text style={ styles.cardTitle }>Curto prazo</Text>
 
-                        <Metas 
-                            nomeMeta={'Máquina de Lavar'}
-                            percentagem={50}
-                        />
+                                {
+                                    this.state.curtoPrazo.map(item => {
+                                        return (
+                                            <Metas 
+                                                nomeMeta={item.name}
+                                                percentagem={item.percent}
+                                            />
+                                        )
+                                    })
+                                }
+                            </Card>
+                        )
+                    }          
 
-                        <Metas 
-                            nomeMeta={'Televisão'}
-                            percentagem={13}
-                        />
+                    {
+                        renderIf(this.state.medioPrazo.length)(
+                        <Card>
+                            <Text style={ styles.cardTitle }>Médio prazo</Text>
+                            {
+                                this.state.medioPrazo.map(item => {
+                                    return (
+                                        <Metas 
+                                            nomeMeta={item.name}
+                                            percentagem={item.percent}
+                                        />
+                                    )
+                                })
+                            }                            
+                        </Card>
+                        )
+                    }          
 
-                    </Card>
-
-                    <Card>
-                        <Text style={ styles.cardTitle }>Médio prazo</Text>
-
-                        <Metas 
-                            nomeMeta={'Reforma do Banheiro'}
-                            percentagem={95}
-                        />
-                    </Card>
-
-                    <Card>
-                        <Text style={ styles.cardTitle }>Longo prazo</Text>
-
-                        <Metas 
-                            nomeMeta={'Ecosport'}
-                            percentagem={15}
-                        />
-
-                        <Metas 
-                            nomeMeta={'Viagem à Disney'}
-                            percentagem={5}
-                        />
-                    </Card>
+                    {
+                        renderIf(this.state.longoPrazo.length)(
+                        <Card>
+                            <Text style={ styles.cardTitle }>Longo prazo</Text>
+                            {
+                                this.state.longoPrazo.map(item => {
+                                    return (
+                                        <Metas 
+                                            nomeMeta={item.name}
+                                            percentagem={item.percent}
+                                        />
+                                    )
+                                })
+                            }                            
+                        </Card>
+                        )
+                    }
                 </View>
             </ScrollView>
         );

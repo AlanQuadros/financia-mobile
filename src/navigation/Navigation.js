@@ -75,7 +75,7 @@ const TabNavigation = createBottomTabNavigator({
             return <Ionicons name={iconName} size={25} color={tintColor} />;
         }
     }),
-    initialRouteName: 'Metas',
+    initialRouteName: 'ContaCorrente',
     tabBarOptions: {
         activeTintColor: colors.cardText,
         inactiveTintColor: colors.cardText,
