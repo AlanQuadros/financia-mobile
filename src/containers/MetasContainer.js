@@ -4,12 +4,36 @@ import { colors } from '../resources/Colors';
 import { fonts } from '../resources/Fonts';
 import Metas from '../components/Metas';
 import Card from '../components/Card';
+import {connect} from "react-redux";
+import * as GoalsActions from '../actions/GoalsActions';
 
-export default class MetasContainer extends Component {
+class MetasContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            curtoPrazo: [],
+            medioPrazo: [],
+            longoPrazo: []
         };
+    }
+
+    componentDidMount() {
+        const { _buscarMetasPorPrazo } = this.props;
+
+        _buscarMetasPorPrazo(1, 1)
+            .then(resp => {
+                this.setState({ curtoPrazo: resp })
+            })
+
+        _buscarMetasPorPrazo(2, 1)
+            .then(resp => {
+                this.setState({ medioPrazo: resp })
+            })
+
+        _buscarMetasPorPrazo(3, 1)
+            .then(resp => {
+                this.setState({ lon: resp })
+            })
     }
 
     render() {
@@ -87,3 +111,11 @@ const styles = StyleSheet.create({
         marginBottom: 16
     }
 })
+
+const mapeador = (state) => ({
+    getGoalsOne: state.GoalsReducer.getGoalsOne,
+    getGoalsTwo: state.GoalsReducer.getGoalsTwo,
+    getGoalsThree: state.GoalsReducer.getGoalsThree,
+});
+
+export default (MetasContainer = connect(mapeador, GoalsActions)(MetasContainer));
