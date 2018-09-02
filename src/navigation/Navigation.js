@@ -4,17 +4,21 @@ import {connect} from "react-redux";
 
 import LoginScreen from "../screens/LoginScreen";
 import HelloKidScreen from '../screens/HelloKidScreen';
+import NewAccountScreen from '../screens/NewAccountScreen';
 
 import * as LoginActions from '../actions/LoginActions'
 
 
 const NavigationStack = isLogged => createStackNavigator({
-    HelloKidScreen: {
-        screen: HelloKidScreen
-    },
     LoginScreen: {
         screen: LoginScreen
     },
+    HelloKidScreen: {
+        screen: HelloKidScreen
+    },
+    NewAccountScreen: {
+        screen: NewAccountScreen
+    }
 },
 {
     screenProps: isLogged,

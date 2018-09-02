@@ -33,36 +33,26 @@ export default class HelloKidContainer extends Component {
             style={ styles.logoKids }
             source={ require(logoKids) }
         />
+        
+        <Image
+            style={ styles.pigLogo }
+            source={ require(pigLogo) }
+        />
 
-        <View>
-            <Image
-                style={ styles.pigLogo }
-                source={ require(pigLogo) }
-            />
+        <Text style={ styles.textName }> 
+            Olá { this.state.kidName },
+        </Text>
+        <Text style={[ styles.textName, { fontFamily: fonts.quicksandLight } ]}>
+            Pronto(a) para brincar?
+        </Text>
 
-            <Text style={ styles.textName }> 
-                Olá { this.state.kidName },
-            </Text>
-            <Text style={[ styles.textName, { fontFamily: fonts.quicksandLight } ]}>
-                vamos brincar
-            </Text>
-
-            <Button
-                style={ styles.yesNoButton } 
-                label={'Sim'}
-                backgroundColor={colors.blue}
-                width={280}
-                textColor={colors.white}
-            />
-
-            <Button
-                style={ styles.yesNoButton } 
-                label={'Não'}
-                width={280}
-                hasUnderline
-            />
-
-        </View>
+        <Button
+            style={ styles.yesNoButton } 
+            label={'Sim!'}
+            backgroundColor={colors.blue}
+            width={280}
+            textColor={colors.white}
+        />
 
         <Image 
             style={ styles.footerImage }
@@ -99,8 +89,8 @@ const styles = StyleSheet.create({
         width: 150, 
         height: 62, 
         position: 'absolute', 
-        top: 59, 
-        right: 22 
+        top: 65, 
+        right: 27 
     },
     pigLogo: { 
         width: 107, 
@@ -113,7 +103,7 @@ const styles = StyleSheet.create({
         width: width, 
         height: 243, 
         position: 'absolute', 
-        bottom: -50, 
+        bottom: -100, 
         right: 0 
     }
 });

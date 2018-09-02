@@ -6,10 +6,12 @@ import { fonts } from '../resources/Fonts';
 export default class Button extends React.PureComponent {
     static defaultProps = {
         width: 100,
+        fontSize: 25,
         label: 'Button',
         backgroundColor: 'transparent',
         textColor: colors.pink,
-        hasUnderline: false
+        hasUnderline: false,
+        fontFamily: fonts.quicksandBold
     };
 
 
@@ -29,7 +31,9 @@ export default class Button extends React.PureComponent {
                     styles.buttonText, 
                     { 
                         color: this.props.textColor,
-                        textDecorationLine: this.props.hasUnderline ? 'underline' : 'none'
+                        textDecorationLine: this.props.hasUnderline ? 'underline' : 'none',
+                        fontSize: this.props.fontSize,
+                        fontFamily: this.props.fontFamily
                     } 
                 ]}>
                     { this.props.label }
@@ -48,9 +52,7 @@ const styles = StyleSheet.create({
         borderRadius: 33,
         alignSelf: 'center'
     },
-    buttonText: {        
-        fontSize: 12,
-        backgroundColor: 'transparent',
-        fontFamily: fonts.quicksandRegular,
+    buttonText: {                
+        backgroundColor: 'transparent'        
     }
 });
