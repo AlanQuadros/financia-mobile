@@ -14,8 +14,8 @@ import MetasScreen from '../screens/MetasScreen';
 import ChatbotScreen from '../screens/ChatbotScreen';
 import ContaSicrediScreen from '../screens/ContaSicrediScreen';
 import ModalTestScreen from '../screens/ModalTestScreen';
-import MetasKidScreen from '../screens/MetasKidScreen';
 import RecompensaMetaScreen from '../screens/RecompensaMetaScreen';
+import PigSocialScreen from '../screens/PigSocialScreen';
 
 import * as LoginActions from '../actions/LoginActions'
 import { colors } from '../resources/Colors';
@@ -59,6 +59,12 @@ const NavigationStack = isLogged => createStackNavigator({
 });
 
 const TabKidNavigation = createBottomTabNavigator({
+    PigSocialScreen: {
+        screen: PigSocialScreen,
+        navigationOptions: {
+            tabBarLabel: 'Minhas doações',
+        }
+    },
     KidsGoalsScreen: {
         screen: KidsGoalsScreen,
         navigationOptions: {
@@ -77,35 +83,27 @@ const TabKidNavigation = createBottomTabNavigator({
         tabBarIcon: ({ focused }) => {
             const { routeName } = navigation.state;
             let iconName;
-            if (routeName === 'KidsGoalsScreen') {
+            if (routeName === 'PigSocialScreen') {
                 return <Image
                     style={{ width: 35, height: 35}} 
                     source={ focused ? 
                         require('../../assets/img/minhas_doacoes_color.png') : 
                         require('../../assets/img/minhas_doacoes.png') } />;
-            } else if (routeName === 'MetasKidScreen') {
+            } else if (routeName === 'KidsGoalsScreen') {
                 return <Image
                     style={{ width: 35, height: 35}} 
                     source={ focused ? 
-                        require('../../assets/img/metas_color.png') :
-                        require('../../assets/img/metas.png') } />;
+                        require('../../assets/img/minhas_tarefas_color.png') :
+                        require('../../assets/img/minhas_tarefas.png') } />;
             } else if (routeName === 'RecompensaMetaScreen') {
                 return <Image
                     style={{ width: 35, height: 35}} 
                     source={ focused ? 
                         require('../../assets/img/recompensa_color.png') : 
                         require('../../assets/img/recompensa.png')} />;
-            } 
-            // else if (routeName === 'Chatbot') {
-            //     return <Image
-            //         style={{ width: 35, height: 35}} 
-            //         source={ focused ? 
-            //             require('../../assets/img/chatbot_color.png') :
-            //             require('../../assets/img/chatbot.png') } />;
-            // }
+            }             
         }
     }),
-    initialRouteName: 'RecompensaMetaScreen',
     tabBarOptions: {
         activeTintColor: colors.cardText,
         inactiveTintColor: colors.cardText
