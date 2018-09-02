@@ -5,12 +5,7 @@ import { colors } from '../resources/Colors';
 import { fonts } from '../resources/Fonts';
 
 export default class LoginContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
-
+   
     render() {
         const logo = '../../assets/img/logo.png';
         const fundo = '../../assets/img/fundo.png';
