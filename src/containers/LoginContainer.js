@@ -27,7 +27,8 @@ export default class LoginContainer extends Component {
                         source={ require(logo) }
                     />
 
-                    <Button 
+                    <Button
+                        action={ () => this.props.navigation.navigate('ContaSicrediScreen') } 
                         label={'Conta Sicredi'}
                         width={252}
                         backgroundColor={colors.softBlue}

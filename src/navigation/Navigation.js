@@ -12,6 +12,7 @@ import MeuPerfilScreen from '../screens/MeuPerfilScreen';
 import ContaCorrenteScreen from '../screens/ContaCorrenteScreen';
 import MetasScreen from '../screens/MetasScreen';
 import ChatbotScreen from '../screens/ChatbotScreen';
+import ContaSicrediScreen from '../screens/ContaSicrediScreen';
 import ModalTestScreen from '../screens/ModalTestScreen';
 import MetasKidScreen from '../screens/MetasKidScreen';
 import PigSocialScreen from '../screens/PigSocialScreen';
@@ -25,12 +26,15 @@ const NavigationStack = isLogged => createStackNavigator({
     TabKidNavigation: {
         screen: TabKidNavigation
     },
+    ContaSicrediScreen: {
+        screen: ContaSicrediScreen
+    },
     LoginScreen: {
         screen: LoginScreen
     },   
     TabNavigation: {
         screen: TabNavigation
-    }, 
+    },    
     NewAccountScreen: {
         screen: NewAccountScreen
     },
