@@ -25,6 +25,7 @@ export default class NewAccountContainer extends Component {
 
     handleSubmitName(){
         this.setState({ showCpf: true });
+        this.scrollView.scrollToEnd();
     }
 
     handleCpf(cpf){
@@ -50,6 +51,8 @@ export default class NewAccountContainer extends Component {
 
         return (
             <ScrollView
+                style={{ backgroundColor: colors.backgroundBase }}
+                ref={ref => this.scrollView = ref}
                 keyboardShouldPersistTaps={'always'}>
                 <View style={ styles.container }>
 

@@ -69,23 +69,23 @@ export default class MeuPerfilContainer extends Component {
 
                     </View>
 
-                    <View style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
+                    <View style={{                    
                         marginHorizontal: 5,
                         marginBottom: 25
-                    }}>
+                    }}>                        
+
                         <Button
+                            style={{ marginBottom: 11 }}
                             width={171}
-                            label={'Logout'}
-                            backgroundColor={colors.grey}
+                            label={'Trocar Perfil'}
+                            backgroundColor={colors.orange}
                             textColor={colors.white}
                         />
 
                         <Button
                             width={171}
-                            label={'Trocar Perfil'}
-                            backgroundColor={colors.orange}
+                            label={'Logout'}
+                            backgroundColor={colors.grey}
                             textColor={colors.white}
                         />
 
