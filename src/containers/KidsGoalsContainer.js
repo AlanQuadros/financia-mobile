@@ -42,7 +42,6 @@ export default class KidsGoalsContainer extends Component {
         </Text>
 
         <Button
-            style={ styles.enviarButton } 
             label={'Enviar tarefa!'}
             backgroundColor={colors.blue}
             width={280}
@@ -89,10 +88,6 @@ const styles = StyleSheet.create({
         position:  'absolute',
         top: 150,
         right: 25
-    },
-    enviarButton: {
-        position: 'absolute',
-        top: 550
     },
     topImage: { 
         width: 412, 
