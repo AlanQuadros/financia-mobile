@@ -6,5 +6,8 @@ export const colors = {
     pink: '#e7679c',
     softBlue: '#00b2f4',
     backgroundBase: '#f7f7f7',
-    cardText: '#4a4a4a'
+    cardText: '#4a4a4a',
+    grey: '#737373',
+
+
 };
