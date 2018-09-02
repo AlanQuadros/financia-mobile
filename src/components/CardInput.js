@@ -18,16 +18,15 @@ export default class CardInput extends Component {
         <View style={ styles.container }>
             <TextInput                
                 autoCapitalize={this.props.autoCapitalize ? 'words' : 'none'}
-                textAlign={'center'}
+                textAlign={'center'}            
                 selectionColor={colors.white}
                 underlineColorAndroid={'transparent'}
                 value={this.props.value}
                 maxLength={this.props.maxLength}
                 onChangeText={e => this.props.onChangeText(e)}
                 onSubmitEditing={this.props.onSubmitEditing}
-                style={[ styles.textStyle, { width: this.props.width } ]}>
-                { this.props.text }
-            </TextInput>
+                style={[ styles.textStyle, { width: this.props.width } ]}
+            />
         </View>
         );
     }

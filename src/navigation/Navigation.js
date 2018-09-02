@@ -12,13 +12,29 @@ import MeuPerfilScreen from '../screens/MeuPerfilScreen';
 import ContaCorrenteScreen from '../screens/ContaCorrenteScreen';
 import MetasScreen from '../screens/MetasScreen';
 import ChatbotScreen from '../screens/ChatbotScreen';
-
+import ModalTestScreen from '../screens/ModalTestScreen';
 import * as LoginActions from '../actions/LoginActions'
 import { colors } from '../resources/Colors';
 
 const wallet = '../../assets/imgs/conta_corrente';
 
 const NavigationStack = isLogged => createStackNavigator({
+        
+    KidsGoalsScreen: {
+        screen: KidsGoalsScreen
+    },
+    KidsGoalsScreen: {
+        screen: KidsGoalsScreen
+    },
+    NewAccountScreen: {
+        screen: NewAccountScreen
+    },
+    ModalTestScreen:{
+        screen: ModalTestScreen
+    },
+    ContaCorrenteScreen: {
+        screen: ContaCorrenteScreen
+    },
     TabNavigation: {
         screen: TabNavigation
     },
@@ -30,10 +46,8 @@ const NavigationStack = isLogged => createStackNavigator({
     },
     HelloKidScreen: {
         screen: HelloKidScreen
-    },
-    NewAccountScreen: {
-        screen: NewAccountScreen
     }
+
 },
 {
     screenProps: isLogged,

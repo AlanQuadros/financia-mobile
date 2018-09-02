@@ -18,6 +18,15 @@ class ContaCorrenteContainer extends Component {
             credito: []
         };
     }
+    
+    handleConta(conta) {
+        this.setState({ conta });
+    }
+
+    handleSenha(senha){
+            this.setState({ senha });
+        
+    }
 
     componentDidMount() {
         const { _buscarGastosFixos, _buscarGastosSazonais, _buscarGastosCredito } = this.props;
