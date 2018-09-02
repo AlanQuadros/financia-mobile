@@ -26,7 +26,7 @@ const NavigationStack = isLogged => createStackNavigator({
     // initialRouteName: 'Picture',
 });
 
-class Navigation extends React.PureComponent {
+class Navigation extends Component {
 
     render() {
         const Navigator = NavigationStack(this.props.isLogged);
