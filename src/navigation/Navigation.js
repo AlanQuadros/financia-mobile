@@ -12,21 +12,25 @@ import MeuPerfilScreen from '../screens/MeuPerfilScreen';
 import ContaCorrenteScreen from '../screens/ContaCorrenteScreen';
 import MetasScreen from '../screens/MetasScreen';
 import ChatbotScreen from '../screens/ChatbotScreen';
+import PigSocialScreen from '../screens/PigSocialScreen';
+
 
 import * as LoginActions from '../actions/LoginActions'
 import { colors } from '../resources/Colors';
 
 
 const NavigationStack = isLogged => createStackNavigator({
-    LoginScreen: {
-        screen: LoginScreen
-    },
-    TabNavigation: {
-        screen: TabNavigation
+    PigSocialScreen: {
+        screen: PigSocialScreen
     },
     KidsGoalsScreen: {
         screen: KidsGoalsScreen
     },
+
+    TabNavigation: {
+        screen: TabNavigation
+    },
+
     HelloKidScreen: {
         screen: HelloKidScreen
     },

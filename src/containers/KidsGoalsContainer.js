@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, StatusBar, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Image, ImageBackground, StatusBar, Dimensions, List, FlatList } from 'react-native';
 import Button from '../components/Button';
+import KidsGoalListItem from '../components/KidsGoalListItem';
 import { fonts } from '../resources/Fonts';
 import { colors } from '../resources/Colors';
 
@@ -16,6 +17,7 @@ export default class KidsGoalsContainer extends Component {
   render() {
     const forKids = '../../assets/img/forKids.png';
     const list = '../../assets/img/list.png';
+    const listItemBackground = '../../assets/img/task_list_background.png';
 
     return (
       <View style={ styles.container }>
@@ -34,29 +36,51 @@ export default class KidsGoalsContainer extends Component {
             Minhas Tarefas
         </Text>
 
-        <Text style={styles.textInf}>
+        <Text style={styles.textInf} >
             As tarefas não selecionadas
-        </Text> 
-        <Text style={styles.textInf2}>   
+        </Text>
+        <Text style={styles.textInf2} >
             permanecem após o envio.
         </Text>
 
+        <View style={styles.listItem} >
+            <ImageBackground source={require(listItemBackground)} style={styles.l} >
+                <View style={styles.listItemContent}>
+                    <Text style={styles.taskName} >
+                        Dar comida para o gato
+                    </Text>
+                    <Text style={styles.taskValue} >
+                        R$ 2
+                    </Text>
+                </View>
+                <View style={styles.listItemContent}>
+                    <Text style={styles.taskName} >
+                        Receber recompensa
+                    </Text>
+                    <Text style={styles.taskValue} >
+                        Botar no cofrinho
+                    </Text>
+                    <Text style={styles.taskValue} >
+                        Ajudar alguém
+                    </Text>
+                </View>
+            </ImageBackground>
+        </View>
+
         <Button
-            style={ styles.enviarButton } 
+            style={ styles.enviarButton }
             label={'Enviar tarefa!'}
             backgroundColor={colors.blue}
             width={280}
             textColor={colors.white}
         />
 
-        <Image 
+        <Image
             style={ styles.footerImage }
         />
       </View>
-      
-            
+
     );
-    
   }
 }
 
@@ -110,6 +134,37 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 77,
         left: 10
+    },
+    listItem: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    listItemContent: {
+        flex: 0.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
+    },
+    l: {
+        width: 381,
+        height: 84,
+    },
+    taskName: {
+        fontSize: 15,
+        fontFamily: fonts.circularStdBold,
+        color: colors.white,
+        position:  'absolute',
+        top: 16,
+        textAlign: 'center',
+    },
+    taskValue: {
+        fontSize: 25,
+        fontFamily: fonts.circularStdBold,
+        color: colors.white,
+        position:  'absolute',
+        top: 41,
+        textAlign: 'center',
     },
 
 });
