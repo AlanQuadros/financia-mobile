@@ -19,13 +19,12 @@ import { colors } from '../resources/Colors';
 const wallet = '../../assets/imgs/conta_corrente';
 
 const NavigationStack = isLogged => createStackNavigator({
-        
-    KidsGoalsScreen: {
-        screen: KidsGoalsScreen
+    TabNavigation: {
+        screen: TabNavigation
     },
-    KidsGoalsScreen: {
-        screen: KidsGoalsScreen
-    },
+    LoginScreen: {
+        screen: LoginScreen
+    },    
     NewAccountScreen: {
         screen: NewAccountScreen
     },
@@ -34,12 +33,6 @@ const NavigationStack = isLogged => createStackNavigator({
     },
     ContaCorrenteScreen: {
         screen: ContaCorrenteScreen
-    },
-    TabNavigation: {
-        screen: TabNavigation
-    },
-    LoginScreen: {
-        screen: LoginScreen
     },    
     KidsGoalsScreen: {
         screen: KidsGoalsScreen
