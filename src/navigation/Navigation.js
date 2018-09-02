@@ -14,6 +14,7 @@ import MetasScreen from '../screens/MetasScreen';
 import ChatbotScreen from '../screens/ChatbotScreen';
 import ModalTestScreen from '../screens/ModalTestScreen';
 import MetasKidScreen from '../screens/MetasKidScreen';
+import PigSocialScreen from '../screens/PigSocialScreen';
 
 import * as LoginActions from '../actions/LoginActions'
 import { colors } from '../resources/Colors';
@@ -21,7 +22,9 @@ import { colors } from '../resources/Colors';
 const wallet = '../../assets/imgs/conta_corrente';
 
 const NavigationStack = isLogged => createStackNavigator({
-    
+    TabKidNavigation: {
+        screen: TabKidNavigation
+    },
     LoginScreen: {
         screen: LoginScreen
     },   
@@ -43,9 +46,7 @@ const NavigationStack = isLogged => createStackNavigator({
     HelloKidScreen: {
         screen: HelloKidScreen
     },
-    TabKidNavigation: {
-        screen: TabKidNavigation
-    },
+
 },
 {
     screenProps: isLogged,
@@ -54,6 +55,9 @@ const NavigationStack = isLogged => createStackNavigator({
 });
 
 const TabKidNavigation = createBottomTabNavigator({
+    PigSocialScreen: {
+        screen: PigSocialScreen
+    },
     KidsGoalsScreen: {
         screen: KidsGoalsScreen,
         navigationOptions: {
