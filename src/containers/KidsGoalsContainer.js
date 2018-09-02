@@ -10,11 +10,8 @@ export default class KidsGoalsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        kidName: 'Aninha'
     };
-
-
-  }
+    }
 
   render() {
     const forKids = '../../assets/img/forKids.png';
@@ -37,6 +34,13 @@ export default class KidsGoalsContainer extends Component {
             Minhas Tarefas
         </Text>
 
+        <Text style={styles.textInf}>
+            As tarefas não selecionadas
+        </Text> 
+        <Text style={styles.textInf2}>   
+            permanecem após o envio.
+        </Text>
+
         <Button
             style={ styles.enviarButton } 
             label={'Enviar tarefa!'}
@@ -48,9 +52,9 @@ export default class KidsGoalsContainer extends Component {
         <Image 
             style={ styles.footerImage }
         />
-
       </View>
       
+            
     );
     
   }
@@ -70,12 +74,25 @@ const styles = StyleSheet.create({
         top: 30,
         left: 10
     },
-
+    textInf: {
+        fontSize: 18,
+        fontFamily: fonts.circularStdBook,
+        color: colors.orange,
+        position:  'absolute',
+        top: 130,
+        right: 20
+    },
+    textInf2: {
+        fontSize: 18,
+        fontFamily: fonts.circularStdBook,
+        color: colors.orange,
+        position:  'absolute',
+        top: 150,
+        right: 25
+    },
     enviarButton: {
         position: 'absolute',
         top: 550
-        
-
     },
     topImage: { 
         width: 412, 
