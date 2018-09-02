@@ -7,6 +7,7 @@ import renderIf from 'render-if';
 import { newUserText1, newUserText2, newUserText3, newUserText4 } from '../resources/Constants';
 import CardUser from '../components/CardUser';
 import CardInput from '../components/CardInput';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 export default class NewAccountContainer extends Component {
     constructor(props) {
@@ -30,6 +31,18 @@ export default class NewAccountContainer extends Component {
         if (/^\d+$/.test(cpf)) {
             this.setState({ cpf });
         }
+    }
+
+    handleSubmitCpf() {
+        const { navigate } = this.props.navigation
+        const resetAction = StackActions.reset({
+        index: 0,
+        actions: [
+            NavigationActions.navigate({ routeName: 'TabNavigation' })
+        ],
+        key: null
+        });
+        this.props.navigation.dispatch(resetAction);
     }
 
     render() {
@@ -69,6 +82,7 @@ export default class NewAccountContainer extends Component {
                                 value={this.state.cpf}
                                 maxLength={11}
                                 keyboardType={'numeric'}
+                                onSubmitEditing={this.handleSubmitCpf.bind(this)}
                                 onChangeText={value => this.handleCpf(value)}
                                 width={120} 
                             />
