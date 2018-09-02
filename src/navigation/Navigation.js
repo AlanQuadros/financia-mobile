@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { Image } from 'react-native';
 import {createStackNavigator, createBottomTabNavigator} from 'react-navigation';
 import {connect} from "react-redux";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 
 import LoginScreen from "../screens/LoginScreen";
 import HelloKidScreen from '../screens/HelloKidScreen';
@@ -13,36 +13,95 @@ import ContaCorrenteScreen from '../screens/ContaCorrenteScreen';
 import MetasScreen from '../screens/MetasScreen';
 import ChatbotScreen from '../screens/ChatbotScreen';
 import ContaSicrediScreen from '../screens/ContaSicrediScreen';
+import ModalTestScreen from '../screens/ModalTestScreen';
+import MetasKidScreen from '../screens/MetasKidScreen';
 
 import * as LoginActions from '../actions/LoginActions'
 import { colors } from '../resources/Colors';
 
+const wallet = '../../assets/imgs/conta_corrente';
 
 const NavigationStack = isLogged => createStackNavigator({
-    ContaSicrediScreen: {
-        screen: ContaSicrediScreen
-    },
+    
     LoginScreen: {
         screen: LoginScreen
-    },
+    },   
     TabNavigation: {
         screen: TabNavigation
+    }, 
+    NewAccountScreen: {
+        screen: NewAccountScreen
     },
+    ModalTestScreen:{
+        screen: ModalTestScreen
+    },
+    ContaCorrenteScreen: {
+        screen: ContaCorrenteScreen
+    },    
     KidsGoalsScreen: {
         screen: KidsGoalsScreen
     },
     HelloKidScreen: {
         screen: HelloKidScreen
     },
-    NewAccountScreen: {
-        screen: NewAccountScreen
-    }
+    TabKidNavigation: {
+        screen: TabKidNavigation
+    },
 },
 {
     screenProps: isLogged,
     headerMode: 'none'
     // initialRouteName: isLogged ? 'TabNavigation' : 'LoginScreen',
-    // initialRouteName: 'Picture',
+});
+
+const TabKidNavigation = createBottomTabNavigator({
+    KidsGoalsScreen: {
+        screen: KidsGoalsScreen,
+        navigationOptions: {
+            tabBarLabel: 'Minhas tarefas',
+        }
+    },
+    MetasKidScreen: {
+        screen: MetasKidScreen
+    }
+},
+{
+    navigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ focused }) => {
+            const { routeName } = navigation.state;
+            let iconName;
+            if (routeName === 'KidsGoalsScreen') {
+                return <Image
+                    style={{ width: 35, height: 35}} 
+                    source={ focused ? 
+                        require('../../assets/img/minhas_doacoes_color.png') : 
+                        require('../../assets/img/minhas_doacoes.png') } />;
+            } else if (routeName === 'MetasKidScreen') {
+                return <Image
+                    style={{ width: 35, height: 35}} 
+                    source={ focused ? 
+                        require('../../assets/img/metas_color.png') :
+                        require('../../assets/img/metas.png') } />;
+            } 
+            // else if (routeName === 'Metas') {
+            //     return <Image
+            //         style={{ width: 35, height: 35}} 
+            //         source={ focused ? 
+            //             require('../../assets/img/metas_color.png') : 
+            //             require('../../assets/img/metas.png')} />;
+            // } else if (routeName === 'Chatbot') {
+            //     return <Image
+            //         style={{ width: 35, height: 35}} 
+            //         source={ focused ? 
+            //             require('../../assets/img/chatbot_color.png') :
+            //             require('../../assets/img/chatbot.png') } />;
+            // }
+        }
+    }),
+    tabBarOptions: {
+        activeTintColor: colors.cardText,
+        inactiveTintColor: colors.cardText
+    },
 });
 
 const TabNavigation = createBottomTabNavigator({
@@ -62,29 +121,41 @@ const TabNavigation = createBottomTabNavigator({
     Chatbot: ChatbotScreen
 },
 {
-    initialRouteName: 'ContaCorrente'
-},
-{
     navigationOptions: ({ navigation }) => ({
-        tabBarIcon: ({ focused, tintColor }) => {
+        tabBarIcon: ({ focused }) => {
             const { routeName } = navigation.state;
             let iconName;
             if (routeName === 'MeuPerfil') {
-                iconName = `ios-contact`;
+                return <Image
+                    style={{ width: 35, height: 35}} 
+                    source={ focused ? 
+                        require('../../assets/img/profile_color.png') : 
+                        require('../../assets/img/profile.png') } />;
             } else if (routeName === 'ContaCorrente') {
-                iconName = `ios-wallet`;
+                return <Image
+                    style={{ width: 35, height: 35}} 
+                    source={ focused ? 
+                        require('../../assets/img/conta_corrente_color.png') :
+                        require('../../assets/img/conta_corrente.png') } />;
             } else if (routeName === 'Metas') {
-                iconName = `ios-flag`;
+                return <Image
+                    style={{ width: 35, height: 35}} 
+                    source={ focused ? 
+                        require('../../assets/img/metas_color.png') : 
+                        require('../../assets/img/metas.png')} />;
             } else if (routeName === 'Chatbot') {
-                iconName = `ios-book`;
+                return <Image
+                    style={{ width: 35, height: 35}} 
+                    source={ focused ? 
+                        require('../../assets/img/chatbot_color.png') :
+                        require('../../assets/img/chatbot.png') } />;
             }
-
-            return <Ionicons name={iconName} size={25} color={tintColor} />;
         }
     }),
+    initialRouteName: 'ContaCorrente',
     tabBarOptions: {
         activeTintColor: colors.cardText,
-        inactiveTintColor: colors.cardText,
+        inactiveTintColor: colors.cardText
     },
 });
 

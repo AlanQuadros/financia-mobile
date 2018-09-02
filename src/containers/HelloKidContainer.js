@@ -3,16 +3,29 @@ import { View, Text, StyleSheet, Image, StatusBar, Dimensions } from 'react-nati
 import Button from '../components/Button';
 import { fonts } from '../resources/Fonts';
 import { colors } from '../resources/Colors';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 const width = Dimensions.get("window").width;
 
 export default class HelloKidContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        kidName: 'Aninha'
-    };
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            kidName: 'Aninha'
+        };
+    }
+
+    goToKidMenu = () => {
+        const { navigate } = this.props.navigation
+        const resetAction = StackActions.reset({
+        index: 0,
+        actions: [
+            NavigationActions.navigate({ routeName: 'TabKidNavigation' })
+        ],
+        key: null
+        });
+        this.props.navigation.dispatch(resetAction);
+    }
 
   render() {
     const fill1 = '../../assets/img/fill_1.png';
@@ -47,6 +60,7 @@ export default class HelloKidContainer extends Component {
         </Text>
 
         <Button
+            action={ this.goToKidMenu }
             style={ styles.yesNoButton } 
             label={'Sim!'}
             backgroundColor={colors.blue}
