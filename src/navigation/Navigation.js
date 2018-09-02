@@ -18,6 +18,9 @@ import { colors } from '../resources/Colors';
 
 
 const NavigationStack = isLogged => createStackNavigator({
+    ContaCorrenteScreen: {
+        screen: ContaCorrenteScreen
+    },    
     KidsGoalsScreen: {
         screen: KidsGoalsScreen
     },
@@ -33,6 +36,7 @@ const NavigationStack = isLogged => createStackNavigator({
     TabNavigation: {
         screen: TabNavigation
     }
+
 },
 {
     screenProps: isLogged,
