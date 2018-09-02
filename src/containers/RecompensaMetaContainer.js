@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image, ImageBackground, StatusBar } from 'react-native';
+import { View, StyleSheet, Image, Text, StatusBar } from 'react-native';
 import Button from '../components/Button';
 import { colors } from '../resources/Colors';
 import { fonts } from '../resources/Fonts';
@@ -8,37 +8,50 @@ export default class RecompensaMetaContainer extends Component {
    
     render() {
         const simbol = '../../assets/img/pig_logo.png';
-        const topo = '../../assets/img/fill_1.png';
-        //const meta
-        //const caminho
+        const topo = '../../assets/img/forKids.png';
+        const caminho = '../../assets/img/caminhoDoPorco.png';
 
         return (
             <View 
                 style={ styles.container }>
 
-                <StatusBar backgroundColor={colors.blue} />
-                
+                <StatusBar backgroundColor={colors.orange} />
+
                 <Image 
                     style={{ width: 412, height: 174, position: 'absolute', top: 0 }}
                     source={ require(topo) }
-                />    
+                />  
+                
+                <Text style={ styles.title }>
+                    Recompensas e Metas
+                </Text>          
 
-                <View style={ styles.buttonsView }>
-                    <Image 
-                        style={ styles.simbol }
-                        source={ require(simbol) }
-                    />
-                    <View class="row">
-                    <Text>Seu saldo é:</Text>
-                    <Text>R$ 34</Text>
-                    </View>
-                    <View style={styles.modalContent}>
-                    <Text>Sua meta é R$ 100</Text>
-                    </View>
-                    <View style={styles.modalContent}>
-                    <Image></Image>
-                    <Image></Image>
-                    </View>
+                <Image 
+                    style={ styles.simbol }
+                    source={ require(simbol) }
+                />
+                                 
+                <View style={ styles.content }>
+                    <Text style={ styles.suaMetaText }>
+                        Seu saldo é: 
+                    </Text>
+                    <Text style={ styles.valorText }>
+                        R$ 34
+                    </Text>
+                </View>
+
+                <View style={ styles.metaView }>
+                    <Text style={ styles.metaText }>Sua meta é:</Text>
+                    <Text style={ styles.metaTextValor }>R$ 100</Text>
+                </View>                                                
+
+                <Image 
+                    resizeMode={'center'}
+                    style={ styles.imgCaminho }
+                    source={ require(caminho) }
+                />
+
+            </View>
         );
     }
 }
@@ -46,31 +59,63 @@ export default class RecompensaMetaContainer extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF'
+        backgroundColor: colors.backgroundBase
     },
     title:{
-        fontSize: 22,
-        color: 'red',
-        fontWeight: 'bold'
+        fontFamily: fonts.circularStdBold,
+        fontSize: 26,
+        color: colors.white,
+        marginLeft: 14,
+        marginTop: 8
     },
-    buttonsView: {
-        justifyContent: 'center'
+    content: { 
+        flexDirection: 'row', 
+        alignSelf: 'flex-end', 
+        marginRight: 30 
     },
-    logo: { 
-        width: 238, 
-        height: 70, 
+    simbol: {
+        height: 48,
+        width: 48,
+        marginTop: 17,
+        marginLeft: 18
+    },
+    suaMetaText: {
+        fontFamily: fonts.circularStdBook,
+        fontSize: 18,
+        color: colors.orange,
+        marginTop: 10,
+        marginRight: 5
+    },
+    valorText: {
+        fontFamily: fonts.circularStdBold,
+        fontSize: 32,
+        color: colors.orange
+    },
+    metaView: {
+        flexDirection: 'row',
+        backgroundColor: colors.blue,
         alignSelf: 'center',
-        marginBottom: 85
-    }, 
-    modalContent: {
-    backgroundColor: colors.softBlue, 
-    alignItems: "center",
-    padding: 22,
-    borderRadius: 33.5,
-    borderColor: "rgba(0, 0, 0, 0.1)",
-    height: 52,
-    width: 280
-  }
+        width: 280,
+        height: 52,
+        borderRadius: 33,
+        justifyContent: 'center',
+        marginTop: 35   
+    },
+    metaText: {
+        fontFamily: fonts.circularStdBook,
+        fontSize: 13,
+        color: colors.white,
+        marginRight: 5,
+        alignSelf: 'center'
+    },
+    metaTextValor: {
+        fontFamily: fonts.circularStdBold,
+        fontSize: 23,
+        color: colors.white,
+        alignSelf: 'center'
+    },
+    imgCaminho: {
+        width: 320, 
+        height: 320 
+    }
 });

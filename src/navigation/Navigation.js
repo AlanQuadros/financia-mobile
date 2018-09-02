@@ -15,6 +15,7 @@ import ChatbotScreen from '../screens/ChatbotScreen';
 import ContaSicrediScreen from '../screens/ContaSicrediScreen';
 import ModalTestScreen from '../screens/ModalTestScreen';
 import MetasKidScreen from '../screens/MetasKidScreen';
+import RecompensaMetaScreen from '../screens/RecompensaMetaScreen';
 
 import * as LoginActions from '../actions/LoginActions'
 import { colors } from '../resources/Colors';
@@ -22,15 +23,18 @@ import { colors } from '../resources/Colors';
 const wallet = '../../assets/imgs/conta_corrente';
 
 const NavigationStack = isLogged => createStackNavigator({
-    ContaSicrediScreen: {
-        screen: ContaSicrediScreen
+    TabKidNavigation: {
+        screen: TabKidNavigation
     },
     LoginScreen: {
         screen: LoginScreen
     },   
     TabNavigation: {
         screen: TabNavigation
-    },    
+    },
+    ContaSicrediScreen: {
+        screen: ContaSicrediScreen
+    },
     NewAccountScreen: {
         screen: NewAccountScreen
     },
@@ -46,9 +50,7 @@ const NavigationStack = isLogged => createStackNavigator({
     HelloKidScreen: {
         screen: HelloKidScreen
     },
-    TabKidNavigation: {
-        screen: TabKidNavigation
-    },
+    
 },
 {
     screenProps: isLogged,
@@ -63,8 +65,11 @@ const TabKidNavigation = createBottomTabNavigator({
             tabBarLabel: 'Minhas tarefas',
         }
     },
-    MetasKidScreen: {
-        screen: MetasKidScreen
+    RecompensaMetaScreen: {
+        screen: RecompensaMetaScreen,
+        navigationOptions: {
+            tabBarLabel: 'Recompensas e Metas',
+        }
     }
 },
 {
@@ -84,14 +89,14 @@ const TabKidNavigation = createBottomTabNavigator({
                     source={ focused ? 
                         require('../../assets/img/metas_color.png') :
                         require('../../assets/img/metas.png') } />;
+            } else if (routeName === 'RecompensaMetaScreen') {
+                return <Image
+                    style={{ width: 35, height: 35}} 
+                    source={ focused ? 
+                        require('../../assets/img/recompensa_color.png') : 
+                        require('../../assets/img/recompensa.png')} />;
             } 
-            // else if (routeName === 'Metas') {
-            //     return <Image
-            //         style={{ width: 35, height: 35}} 
-            //         source={ focused ? 
-            //             require('../../assets/img/metas_color.png') : 
-            //             require('../../assets/img/metas.png')} />;
-            // } else if (routeName === 'Chatbot') {
+            // else if (routeName === 'Chatbot') {
             //     return <Image
             //         style={{ width: 35, height: 35}} 
             //         source={ focused ? 
@@ -100,6 +105,7 @@ const TabKidNavigation = createBottomTabNavigator({
             // }
         }
     }),
+    initialRouteName: 'RecompensaMetaScreen',
     tabBarOptions: {
         activeTintColor: colors.cardText,
         inactiveTintColor: colors.cardText

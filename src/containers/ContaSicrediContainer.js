@@ -25,7 +25,15 @@ export default class ContaSicrediContainer extends Component {
     }
 
      handleSenha(senha){
-        this.setState({ senha });
+        this.setState({ senha });             
+    }
+
+    handleSubmitConta() {
+        this.setState({ showPassword: true })
+    }
+
+    handleSubmitSenha() {
+        this.setState({ showFinish: true })
 
         setTimeout(() => {
             const { navigate } = this.props.navigation
@@ -37,15 +45,7 @@ export default class ContaSicrediContainer extends Component {
             key: null
             });
             this.props.navigation.dispatch(resetAction);
-        }, 3000);        
-    }
-
-    handleSubmitConta() {
-        this.setState({ showPassword: true })
-    }
-
-    handleSubmitSenha() {
-        this.setState({ showFinish: true })
+        }, 3000);   
     }
 
      render() {
