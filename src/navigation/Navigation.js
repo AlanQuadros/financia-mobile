@@ -12,12 +12,16 @@ import MeuPerfilScreen from '../screens/MeuPerfilScreen';
 import ContaCorrenteScreen from '../screens/ContaCorrenteScreen';
 import MetasScreen from '../screens/MetasScreen';
 import ChatbotScreen from '../screens/ChatbotScreen';
+import ContaSicrediScreen from '../screens/ContaSicrediScreen';
 
 import * as LoginActions from '../actions/LoginActions'
 import { colors } from '../resources/Colors';
 
 
 const NavigationStack = isLogged => createStackNavigator({
+    ContaSicrediScreen: {
+        screen: ContaSicrediScreen
+    },
     LoginScreen: {
         screen: LoginScreen
     },
