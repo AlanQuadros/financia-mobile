@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, StatusBar } from 'react-native';
 import { fonts } from '../resources/Fonts';
 import { colors } from '../resources/Colors';
 
@@ -16,7 +16,7 @@ export default class ChatbotContainer extends Component {
 
         return (
         <View style={{ flex: 1 }}>
-
+            <StatusBar backgroundColor={colors.blue} />
             <View style={{ justifyContent: 'center', alignContent: 'center', flex: 1 }}>
                 <Image 
                     style={{ width: 412, height: 174, position: 'absolute', top: 0, left: 0 }}

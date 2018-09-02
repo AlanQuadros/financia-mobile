@@ -23,13 +23,13 @@ import { colors } from '../resources/Colors';
 const wallet = '../../assets/imgs/conta_corrente';
 
 const NavigationStack = isLogged => createStackNavigator({
-    TabNavigation: {
-        screen: TabNavigation
-    },
+    
     LoginScreen: {
         screen: LoginScreen
     },   
-    
+    TabNavigation: {
+        screen: TabNavigation
+    },
     ContaSicrediScreen: {
         screen: ContaSicrediScreen
     },
@@ -158,7 +158,7 @@ const TabNavigation = createBottomTabNavigator({
             }
         }
     }),
-    initialRouteName: 'Chatbot',
+    initialRouteName: 'ContaCorrente',
     tabBarOptions: {
         activeTintColor: colors.cardText,
         inactiveTintColor: colors.cardText
