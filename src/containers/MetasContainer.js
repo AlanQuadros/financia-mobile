@@ -7,6 +7,7 @@ import Card from '../components/Card';
 import {connect} from "react-redux";
 import * as GoalsActions from '../actions/GoalsActions';
 import renderIf from 'render-if';
+import Loader from '../components/Loader';
 
 class MetasContainer extends Component {
     constructor(props) {
@@ -14,7 +15,10 @@ class MetasContainer extends Component {
         this.state = {
             curtoPrazo: [],
             medioPrazo: [],
-            longoPrazo: []
+            longoPrazo: [],
+            loadingCP: true,
+            loadingMP: true,
+            loadingLP: true
         };
     }
 
@@ -23,17 +27,17 @@ class MetasContainer extends Component {
 
         _buscarMetasCurtoPrazo(1)
             .then(resp => {
-                this.setState({ curtoPrazo: resp })
+                this.setState({ curtoPrazo: resp, loadingCP: false })
             })
 
         _buscarMetasMedioPrazo(1)
             .then(resp => {
-                this.setState({ medioPrazo: resp })
+                this.setState({ medioPrazo: resp, loadingMP: false })
             })
 
         _buscarMetasLongoPrazo(1)
             .then(resp => {
-                this.setState({ longoPrazo: resp })
+                this.setState({ longoPrazo: resp, loadingLP: false })
             })
     }
 
@@ -43,66 +47,82 @@ class MetasContainer extends Component {
         return (
             <ScrollView>
                 <View style={ styles.container }>
-                    <Image 
-                        style={{ width: 412, height: 174, position: 'absolute' }}
-                        source={ require(topo) }
-                    />
-                    <Text style={ styles.topText }>Metas</Text>
 
                     {
-                        renderIf(this.state.curtoPrazo.length)(
-                            <Card>
-                                <Text style={ styles.cardTitle }>Curto prazo</Text>
-
-                                {
-                                    this.state.curtoPrazo.map(item => {
-                                        return (
-                                            <Metas 
-                                                nomeMeta={item.name}
-                                                percentagem={item.percent}
-                                            />
-                                        )
-                                    })
-                                }
-                            </Card>
-                        )
-                    }          
-
-                    {
-                        renderIf(this.state.medioPrazo.length)(
-                        <Card>
-                            <Text style={ styles.cardTitle }>Médio prazo</Text>
-                            {
-                                this.state.medioPrazo.map(item => {
-                                    return (
-                                        <Metas 
-                                            nomeMeta={item.name}
-                                            percentagem={item.percent}
-                                        />
-                                    )
-                                })
-                            }                            
-                        </Card>
-                        )
-                    }          
-
-                    {
-                        renderIf(this.state.longoPrazo.length)(
-                        <Card>
-                            <Text style={ styles.cardTitle }>Longo prazo</Text>
-                            {
-                                this.state.longoPrazo.map(item => {
-                                    return (
-                                        <Metas 
-                                            nomeMeta={item.name}
-                                            percentagem={item.percent}
-                                        />
-                                    )
-                                })
-                            }                            
-                        </Card>
-                        )
+                        renderIf(this.state.loadingCP && 
+                            this.state.loadingMP &&
+                            this.state.loadingLP)(
+                                <Loader />
+                            )
                     }
+                    {
+                        renderIf(!this.state.loadingCP && 
+                            !this.state.loadingMP &&
+                            !this.state.loadingLP)(
+                                <View>
+                                    <Image 
+                                        style={{ width: 412, height: 174, position: 'absolute' }}
+                                        source={ require(topo) }
+                                    />
+                                    <Text style={ styles.topText }>Metas</Text>
+
+                                    {
+                                        renderIf(this.state.curtoPrazo.length)(
+                                            <Card>
+                                                <Text style={ styles.cardTitle }>Curto prazo</Text>
+
+                                                {
+                                                    this.state.curtoPrazo.map(item => {
+                                                        return (
+                                                            <Metas 
+                                                                nomeMeta={item.name}
+                                                                percentagem={item.percent}
+                                                            />
+                                                        )
+                                                    })
+                                                }
+                                            </Card>
+                                        )
+                                    }          
+
+                                    {
+                                        renderIf(this.state.medioPrazo.length)(
+                                        <Card>
+                                            <Text style={ styles.cardTitle }>Médio prazo</Text>
+                                            {
+                                                this.state.medioPrazo.map(item => {
+                                                    return (
+                                                        <Metas 
+                                                            nomeMeta={item.name}
+                                                            percentagem={item.percent}
+                                                        />
+                                                    )
+                                                })
+                                            }                            
+                                        </Card>
+                                        )
+                                    }          
+
+                                    {
+                                        renderIf(this.state.longoPrazo.length)(
+                                        <Card>
+                                            <Text style={ styles.cardTitle }>Longo prazo</Text>
+                                            {
+                                                this.state.longoPrazo.map(item => {
+                                                    return (
+                                                        <Metas 
+                                                            nomeMeta={item.name}
+                                                            percentagem={item.percent}
+                                                        />
+                                                    )
+                                                })
+                                            }                            
+                                        </Card>
+                                        )
+                                    }
+                                </View>
+                            )
+                    }                
                 </View>
             </ScrollView>
         );

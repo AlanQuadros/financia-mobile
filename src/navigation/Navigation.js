@@ -19,12 +19,12 @@ import { colors } from '../resources/Colors';
 const wallet = '../../assets/imgs/conta_corrente';
 
 const NavigationStack = isLogged => createStackNavigator({
-    TabNavigation: {
-        screen: TabNavigation
-    },
     LoginScreen: {
         screen: LoginScreen
-    },    
+    },   
+    TabNavigation: {
+        screen: TabNavigation
+    }, 
     NewAccountScreen: {
         screen: NewAccountScreen
     },
@@ -97,7 +97,7 @@ const TabNavigation = createBottomTabNavigator({
             }
         }
     }),
-    initialRouteName: 'MeuPerfil',
+    initialRouteName: 'ContaCorrente',
     tabBarOptions: {
         activeTintColor: colors.cardText,
         inactiveTintColor: colors.cardText
