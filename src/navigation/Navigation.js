@@ -90,7 +90,7 @@ const TabNavigation = createBottomTabNavigator({
             }
         }
     }),
-    initialRouteName: 'ContaCorrente',
+    initialRouteName: 'MeuPerfil',
     tabBarOptions: {
         activeTintColor: colors.cardText,
         inactiveTintColor: colors.cardText

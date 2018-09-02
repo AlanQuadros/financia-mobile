@@ -4,6 +4,7 @@ import { colors } from '../resources/Colors';
 import { fonts } from '../resources/Fonts';
 import ProfileLabels from '../components/ProfileLabels';
 import Button from '../components/Button';
+import Modal from "react-native-modal";
 
 export default class MeuPerfilContainer extends Component {
     constructor(props) {
@@ -18,9 +19,21 @@ export default class MeuPerfilContainer extends Component {
                 uf: "RS",
                 url_img: "https://images.pexels.com/photos/736716/pexels-photo-736716.jpeg",
                 notification_id: "stringao"
-            }
+            },
+            kid: [
+                {
+                "id": 1,
+                "kid_id": 1,
+                "adult_id": 1,
+                "created_at": "2018-09-02T13:45:59.000Z",
+                "updated_at": "2018-09-02T13:45:59.000Z"
+                }
+            ],
+            showModal: false
         };
     }
+
+    toggleModal = () => this.setState({ showModal: !this.state.showModal });
 
     render() {
         const topo = '../../assets/img/topo_azul.png';
@@ -28,6 +41,15 @@ export default class MeuPerfilContainer extends Component {
 
         return (
             <ScrollView>
+
+                <Modal
+                    onBackdropPress={ this.toggleModal } 
+                    isVisible={this.state.showModal}>
+                    <View style={{ flex: 1 }}>
+                        <Text>Trocar Perfil</Text>
+                    </View>
+                </Modal>
+
                 <View style={ styles.container }>
                     <Image 
                         style={{ width: 412, height: 174, position: 'absolute' }}
@@ -75,6 +97,7 @@ export default class MeuPerfilContainer extends Component {
                     }}>                        
 
                         <Button
+                            action={ this.toggleModal }
                             style={{ marginBottom: 11 }}
                             width={171}
                             label={'Trocar Perfil'}
