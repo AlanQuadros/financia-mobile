@@ -22,13 +22,15 @@ import { colors } from '../resources/Colors';
 const wallet = '../../assets/imgs/conta_corrente';
 
 const NavigationStack = isLogged => createStackNavigator({
-    
+    ContaSicrediScreen: {
+        screen: ContaSicrediScreen
+    },
     LoginScreen: {
         screen: LoginScreen
     },   
     TabNavigation: {
         screen: TabNavigation
-    }, 
+    },    
     NewAccountScreen: {
         screen: NewAccountScreen
     },

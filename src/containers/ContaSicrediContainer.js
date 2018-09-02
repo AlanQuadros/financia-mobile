@@ -6,21 +6,48 @@ import { colors } from '../resources/Colors';
 import { SicrediUserText1, SicrediUserText2, SicrediUserText3, SicrediUserText4 } from '../resources/Constants';
 import CardInput from '../components/CardInput';
 import CardUser  from '../components/CardUser';
+import renderIf from 'render-if';
+import { StackActions, NavigationActions } from 'react-navigation';
  
 export default class ContaSicrediContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
             conta: '',
-            senha: ''
+            senha: '',
+            showPassword: false,
+            showFinish: false
         };
     }
+
     handleConta(conta) {
         this.setState({ conta });
     }
+
      handleSenha(senha){
-            this.setState({ senha });
-          }
+        this.setState({ senha });
+
+        setTimeout(() => {
+            const { navigate } = this.props.navigation
+            const resetAction = StackActions.reset({
+            index: 0,
+            actions: [
+                NavigationActions.navigate({ routeName: 'TabNavigation' })
+            ],
+            key: null
+            });
+            this.props.navigation.dispatch(resetAction);
+        }, 3000);        
+    }
+
+    handleSubmitConta() {
+        this.setState({ showPassword: true })
+    }
+
+    handleSubmitSenha() {
+        this.setState({ showFinish: true })
+    }
+
      render() {
         const topo = '../../assets/img/topo_azul.png';
          return (
@@ -28,31 +55,53 @@ export default class ContaSicrediContainer extends Component {
                  <Image 
                     style={{ width: 412, height: 174, position: 'absolute' }}
                     source={ require(topo) }
-                ></Image>
+                />
+
                 <Text style={ styles.topText }>
                     Conta Sicredi
                 </Text>
-                 <CardFinan text={SicrediUserText1} />
+
+                <CardFinan text={SicrediUserText1} />
+
                 <CardFinan text={SicrediUserText2} />
-                <CardInput 
+                
+                <CardInput
                     autoCapitalize
                     value={this.state.conta}
                     maxLength={30}
+                    onSubmitEditing={ this.handleSubmitConta.bind(this) }
                     onChangeText={value => this.handleConta(value)}
                     width={89}
                 />
-                <CardFinan text={SicrediUserText3} />
-                <CardInput 
-                    autoCapitalize
-                    value={this.state.senha}
-                    maxLength={6}
-                    onChangeText={value => this.handleSenha(value)}
-                    width={89}
-                    secureTextEntry
-                />
-                <CardFinan text={SicrediUserText4} />
-                 <CardUser text={'Legal!'} />
-                 </View>
+
+                {
+                    renderIf(this.state.showPassword) (
+                        <View>
+                            <CardFinan text={SicrediUserText3} />
+                        
+                            <CardInput 
+                                autoCapitalize
+                                value={this.state.senha}
+                                maxLength={6}
+                                onSubmitEditing={ this.handleSubmitSenha.bind(this) }
+                                onChangeText={value => this.handleSenha(value)}
+                                width={89}
+                                secureTextEntry
+                            />
+
+                            {
+                                renderIf(this.state.showFinish) (
+                                    <View>
+                                        <CardFinan text={SicrediUserText4} />
+                                        <CardUser text={'Legal!'} />
+                                    </View>
+                                )
+                            }
+                    
+                        </View>
+                    )
+                }                
+            </View>
         );
   }}
 
