@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
+import { fonts } from '../resources/Fonts';
+import { colors } from '../resources/Colors';
 
 export default class ChatbotContainer extends Component {
     constructor(props) {
@@ -9,9 +11,39 @@ export default class ChatbotContainer extends Component {
     }
 
     render() {
+
+        const topo = '../../assets/img/topo_azul.png';
+
         return (
-        <View>
-            <Text> ChatbotContainer </Text>
+        <View style={{ flex: 1 }}>
+
+            <View style={{ justifyContent: 'center', alignContent: 'center', flex: 1 }}>
+                <Image 
+                    style={{ width: 412, height: 174, position: 'absolute', top: 0, left: 0 }}
+                    source={ require(topo) }
+                />
+                <Text style={{
+                    fontSize: 24,
+                    fontFamily: fonts.circularStdBold,
+                    color: colors.white,
+                    marginTop: 21,
+                    marginLeft: 14,
+                    marginBottom: 6,
+                    position: 'absolute',
+                    top: 0
+                }}>
+                    Chatbot
+                </Text>
+
+                <Text style={{
+                    fontFamily: fonts.circularStdBold,
+                    fontSize: 25,
+                    textAlign: 'center',                
+                    color: colors.black,                    
+                }}> 
+                    Em Breve ;) 
+                </Text>
+            </View>
         </View>
         );
     }

@@ -23,15 +23,13 @@ import { colors } from '../resources/Colors';
 const wallet = '../../assets/imgs/conta_corrente';
 
 const NavigationStack = isLogged => createStackNavigator({
-    TabKidNavigation: {
-        screen: TabKidNavigation
+    TabNavigation: {
+        screen: TabNavigation
     },
     LoginScreen: {
         screen: LoginScreen
     },   
-    TabNavigation: {
-        screen: TabNavigation
-    },
+    
     ContaSicrediScreen: {
         screen: ContaSicrediScreen
     },
@@ -50,7 +48,9 @@ const NavigationStack = isLogged => createStackNavigator({
     HelloKidScreen: {
         screen: HelloKidScreen
     },
-    
+    TabKidNavigation: {
+        screen: TabKidNavigation
+    },
 },
 {
     screenProps: isLogged,
@@ -158,7 +158,7 @@ const TabNavigation = createBottomTabNavigator({
             }
         }
     }),
-    initialRouteName: 'ContaCorrente',
+    initialRouteName: 'Chatbot',
     tabBarOptions: {
         activeTintColor: colors.cardText,
         inactiveTintColor: colors.cardText

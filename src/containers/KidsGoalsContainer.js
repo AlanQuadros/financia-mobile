@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, StatusBar, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Image, StatusBar, Dimensions, ScrollView } from 'react-native';
 import Button from '../components/Button';
 import { fonts } from '../resources/Fonts';
 import { colors } from '../resources/Colors';
@@ -18,42 +18,47 @@ export default class KidsGoalsContainer extends Component {
     const list = '../../assets/img/list.png';
 
     return (
-      <View style={ styles.container }>
-        <StatusBar backgroundColor={colors.orange} />
+        <ScrollView>
+            <View style={ styles.container }>
+                <StatusBar backgroundColor={colors.orange} />
 
-        <Image
-            style={ styles.topImage }
-            source={ require(forKids) }
-        />
-        <Image
-        style={ styles.ImgList }
-        source={ require(list) }
-        />
+                <Image
+                    style={ styles.topImage }
+                    source={ require(forKids) }
+                />
+                <Image
+                style={ styles.ImgList }
+                source={ require(list) }
+                />
 
-        <Text style={styles.textName}>
-            Minhas Tarefas
-        </Text>
+                <Text style={styles.textName}>
+                    Minhas Tarefas
+                </Text>
 
-        <Text style={styles.textInf}>
-            As tarefas não selecionadas
-        </Text> 
-        <Text style={styles.textInf2}>   
-            permanecem após o envio.
-        </Text>
+                <Text style={styles.textInf}>
+                    As tarefas não selecionadas
+                </Text> 
+                <Text style={styles.textInf2}>   
+                    permanecem após o envio.
+                </Text>
 
-        <Button
-            label={'Enviar tarefa!'}
-            backgroundColor={colors.blue}
-            width={280}
-            textColor={colors.white}
-        />
+                <Image 
+                    style={{ width: 300, height: 300, marginTop: 180, marginBottom: 30 }}
+                    source={ require('../../assets/img/tarefas.png') }    
+                />
 
-        <Image 
-            style={ styles.footerImage }
-        />
-      </View>
-      
-            
+                <Button
+                    label={'Enviar tarefa!'}
+                    backgroundColor={colors.blue}
+                    width={280}
+                    textColor={colors.white}
+                />
+
+                <Image 
+                    style={ styles.footerImage }
+                />
+            </View>
+        </ScrollView>            
     );
     
   }
