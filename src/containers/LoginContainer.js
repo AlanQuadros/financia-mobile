@@ -8,21 +8,25 @@ export default class LoginContainer extends Component {
    
     render() {
         const logo = '../../assets/img/logo.png';
-        const fundo = '../../assets/img/fundo.png';
+        const topo = '../../assets/img/topo_azul.png';
 
         return (
-            <ImageBackground 
-                source={ require(fundo) }
+            <View 
                 style={ styles.container }>
 
-                <StatusBar hidden />
-
+                <StatusBar backgroundColor={colors.blue} />
+                
                 <Image 
-                    style={{ width: 238, height: 70 }}
-                    source={ require(logo) }
-                />
+                    style={{ width: 412, height: 174, position: 'absolute', top: 0 }}
+                    source={ require(topo) }
+                />    
 
                 <View style={ styles.buttonsView }>
+                    <Image 
+                        style={ styles.logo }
+                        source={ require(logo) }
+                    />
+
                     <Button 
                         label={'Conta Sicredi'}
                         width={252}
@@ -46,7 +50,7 @@ export default class LoginContainer extends Component {
                     />
                 </View>
                 
-            </ImageBackground>
+            </View>
         );
     }
 }
@@ -64,6 +68,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     buttonsView: {
-        marginTop: 177
+        justifyContent: 'center'
+    },
+    logo: { 
+        width: 238, 
+        height: 70, 
+        alignSelf: 'center',
+        marginBottom: 85
     }
 });
